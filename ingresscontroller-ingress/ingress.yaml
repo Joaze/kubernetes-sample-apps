@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: #dns or for test porpose dns of alb or even use the "".nip.io "  service (ip.nip.io)ex: 13.44.5.12.nip.io
+      http:
+        paths:
+        - path: "/"
+          pathType: Prefix
+          backend:
+            service:
+              name: podinfo
+              port:
+                number: 9898
